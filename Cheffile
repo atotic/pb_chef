@@ -1,0 +1,14 @@
+site "http://community.opscode.com/api/v1"
+
+cookbook "build-essential"
+cookbook "hostname", git: "https://github.com/fnichol/chef-hostname"
+cookbook "ruby_build"
+cookbook "rbenv", git: 'https://github.com/fnichol/chef-rbenv'
+cookbook "nginx"
+cookbook "ohai"
+cookbook "postgresql"
+cookbook "pookio", path: 'site-cookbooks/pookio'
+cookbook "ssh_agent_forwarding", path: 'site-cookbooks/ssh_agent_forwarding'
+cookbook 'root_ssh_agent', git: 'https://github.com/dergachev/chef_root_ssh_agent'
+
+

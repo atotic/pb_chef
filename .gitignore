@@ -14,3 +14,8 @@ capybara-*.html
 **.orig
 rerun.txt
 pickle-email-*.html
+/data_bags
+/README.html
+.*.swp
+.*.swo
+.rvmrc

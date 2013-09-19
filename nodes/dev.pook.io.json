@@ -1,0 +1,60 @@
+{
+  "fqdn": "dev.pook.io",
+  "node_hostname": "dev",
+  
+  "rbenv": {
+    "rubies": ["2.0.0-p247"],
+    "global": "2.0.0-p247"
+  },
+
+  "nginx": {
+    "version": "1.4.1",
+    "dir": "/opt/nginx-1.4.1",
+    "user": "nginx",
+    "keepalive": "on",
+    "gzip": "on",
+    "gzip_types": [
+      "text/plain",
+      "text/css",
+      "application/x-javascript",
+      "text/xml",
+      "application/xml",
+      "application/xml+rss",
+      "application/rss+xml",
+      "text/javascript",
+      "application/javascript",
+      "application/json",
+      "application/x-font-ttf",
+      "font/opentype",
+      "application/vnd.ms-fontobject",
+      "image/svg+xml"
+    ],
+    "init_style": "init",
+    "default_site_enabled": false,
+    "source": {
+      "modules": ["http_ssl_module", "http_gzip_static_module"]
+    }
+  },
+
+  "postgresql": {
+    "version": "9.1",
+    "password": {
+      "postgres": "md5f0dfb42476ad991d2b47954d13d102a8"
+    }
+  },
+
+  "pookio": {
+    "hostname": "dev.pook.io"
+  },
+
+  "run_list": [
+    "recipe[root_ssh_agent::ppid]",
+    "recipe[ssh_agent_forwarding]",
+    "recipe[ruby_build]",
+    "recipe[rbenv::system]",
+    "recipe[postgresql::server]",
+    "recipe[postgresql::client]",
+    "recipe[nginx::source]",
+    "recipe[pookio]"
+  ]
+}

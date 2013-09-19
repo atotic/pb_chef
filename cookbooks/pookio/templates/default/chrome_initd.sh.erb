@@ -1,0 +1,42 @@
+#!/bin/bash
+### BEGIN INIT INFO
+# Provides:          chrome_daemon
+# Required-Start:    $local_fs $remote_fs $network $xvfb
+# Required-Stop:     $local_fs $remote_fs
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: chrome runs inside xvfb
+# Description:       chrome_daemon part of the pookio server family
+### END INIT INFO
+
+DISPLAY=":1"
+USER=pookio
+PB4US_ROOT="<%= node['pookio']['root'] %>"
+CHROME="${PB4US_ROOT}/pb_server/current/script/chrome"
+SECRETS="${PB4US_ROOT}/pb_server/shared/secrets.sh"
+export RBENV_ROOT="/usr/local/rbenv"
+RBENV="/etc/profile.d/rbenv.sh"
+export RACK_ENV="<%= node['pookio']['rack_env'] %>"
+CMD="bundle exec $CHROME"
+
+. "$RBENV"
+cd "$PB4US_ROOT/pb_server/current"
+
+
+case "$1" in
+  start)
+    . $SECRETS && su $USER -c "PATH=$PATH DISPLAY=$DISPLAY $CMD start"
+    ;;
+  stop)
+    . $SECRETS && su $USER -c "PATH=$PATH DISPLAY=$DISPLAY $CMD stop"
+    ;;
+  restart)
+    # . $SECRETS && su $USER -c "PATH=$PATH DISPLAY=$DISPLAY $CMD restart"
+    . $SECRETS && su $USER -c "PATH=$PATH DISPLAY=$DISPLAY $CMD stop"
+    . $SECRETS && su $USER -c "PATH=$PATH DISPLAY=$DISPLAY $CMD start"
+    ;;
+  *)
+    echo "Usage: $0 {start|stop|restart}" >&2
+    exit 3
+    ;;
+esac

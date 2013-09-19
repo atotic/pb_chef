@@ -1,0 +1,66 @@
+SITE
+  remote: http://community.opscode.com/api/v1
+  specs:
+    apt (2.1.1)
+    build-essential (1.4.2)
+    nginx (1.8.0)
+      apt (>= 0.0.0)
+      build-essential (>= 0.0.0)
+      ohai (>= 1.1.4)
+      runit (>= 0.0.0)
+      yum (>= 0.0.0)
+    ohai (1.1.12)
+    openssl (1.1.0)
+    postgresql (3.0.4)
+      apt (>= 0.0.0)
+      build-essential (>= 0.0.0)
+      openssl (>= 0.0.0)
+    ruby_build (0.8.0)
+    runit (1.2.0)
+      build-essential (>= 0.0.0)
+      yum (>= 0.0.0)
+    yum (2.3.2)
+
+GIT
+  remote: https://github.com/dergachev/chef_root_ssh_agent
+  ref: master
+  sha: 25a316bed58adb3f4951a0f20ad3dfc3bc2af3df
+  specs:
+    root_ssh_agent (0.1.0)
+
+GIT
+  remote: https://github.com/fnichol/chef-hostname
+  ref: master
+  sha: 76da78f8bffadbae784d32a2c1209bcb940b0b96
+  specs:
+    hostname (0.1.0)
+
+GIT
+  remote: https://github.com/fnichol/chef-rbenv
+  ref: master
+  sha: 9afb4e5da2e6212504a12de3bbbd410cd96100f6
+  specs:
+    rbenv (0.7.3)
+
+PATH
+  remote: site-cookbooks/pookio
+  specs:
+    pookio (0.0.0)
+
+PATH
+  remote: site-cookbooks/ssh_agent_forwarding
+  specs:
+    ssh_agent_forwarding (0.0.0)
+
+DEPENDENCIES
+  build-essential (>= 0)
+  hostname (>= 0)
+  nginx (>= 0)
+  ohai (>= 0)
+  pookio (>= 0)
+  postgresql (>= 0)
+  rbenv (>= 0)
+  root_ssh_agent (>= 0)
+  ruby_build (>= 0)
+  ssh_agent_forwarding (>= 0)
+
