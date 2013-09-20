@@ -13,6 +13,7 @@ bash 'update apt' do
 end
 
 # A few dependencies we'll need:
+package 'imagemagick'
 package 'graphicsmagick'
 package 'exiv2'
 package 'daemon'
