@@ -26,7 +26,7 @@ A couple commands to get started:
 
 You only need to run those commands once, and they will install all the gems and cookbooks you'll need. (A "cookbook" is a collection of one or more "recipes," which are scripts in Chef to do some discrete task, like installing a web server.) Next you'll need to install chef on the remote machine. You can do that like this:
 
-    chef solo prepare dev.pook.io
+    knife solo prepare dev.pook.io
 
 While that works, you should add the `secrets.json` data bag file, which is kept out of Git because it contains passwords and other secrets. First create a directory for it:
 
@@ -58,7 +58,7 @@ Of course you should use real values instead of `TODO`.
 
 When that's done, you can actually apply the chef scripts like this:
 
-    chef solo cook dev.pook.io
+    knife solo cook dev.pook.io
 
 You only need to run `prepare` once, when you have a fresh machine. After than you should just run `cook` to apply new changes.
 
