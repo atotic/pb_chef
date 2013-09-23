@@ -1,3 +1,16 @@
+- Can we have a vagrantfile
+- are database migrations happening?
+- how do i rollback
+- what is it doing?
+
+Everything lives in /var/www/pookio
+/var/www/pookio/pb_server/shared/pb_data is where logs are
+service chrome restart to restart chrome
+
+Inside pb_server you get 3 dirs: shared/release/current
+When deploying, pulls git, runs migrations, less compile
+site-cookbooks/pookio/recipes/default.rb is where stuff happens
+
 pb\_chef
 =======
 
@@ -17,7 +30,7 @@ The chef scripts here will help you bring up a new machine for pook.io developme
 
   * Drop your ssh public key in `~vagrant/.ssh/authorized_keys` (or wherever is appropriate). (You can get on the box to do this by running `vagrant ssh`.)
 
-Then you'll be ready to do chef work. Pook.io uses chef-solo, which works by opening an ssh connection from your machine to the box-to-be-configured, and running the appropriate commands remotely. 
+Then you'll be ready to do chef work. Pook.io uses chef-solo, which works by opening an ssh connection from your machine to the box-to-be-configured, and running the appropriate commands remotely.
 
 A couple commands to get started:
 
