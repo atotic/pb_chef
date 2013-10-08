@@ -1,5 +1,5 @@
-- Can we have a vagrantfile
-- are database migrations happening?
++ Can we have a vagrantfile (yes)
++ are database migrations happening? (yes)
 - how do i rollback
 - what is it doing?
 
@@ -79,4 +79,16 @@ Chef's "run list" for a machine is defined in `nodes`. For instance, for `dev.po
 
 Most of the recipes are standard, like install nginx or postgres, but the final recipe, `pookio`, has our application-specific instructions. This recipe is implemented in `site-cookbooks/pookio/recipes/default.rb`.
 
+
+vagrant
+=======
+
+To bring up a VM, you can ignore the above and just use the Vagrantfile provided here. Once you've installed vagrant, just run these commands:
+
+    bundle install
+    vagrant plugin install vagrant-librarian-chef
+    vagrant plugin install vagrant-omnibus
+    vangrant up
+
+The Vagrantfile is configured to automatically run the same recipes as described above when vagrant brings up the VM.
 

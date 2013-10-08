@@ -20,7 +20,7 @@ template node['ssh_agent_forwarding']['ssh_wrapper'] do
   source 'wrap-ssh4git.sh.erb'
   owner 'root'
   group 'deploy'
-  mode '777'
+  mode '755'
 end
 
 bash 'update-rights-for-forwarding' do

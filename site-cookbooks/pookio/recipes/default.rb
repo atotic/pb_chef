@@ -38,8 +38,6 @@ cookbook_file 'xvfb_initd.sh' do
   notifies :restart, "service[xvfb]"
 end
 
-# TODO: Chrome installation.
-
 # Postgres database for the app:
 bash 'create-postgres-user' do
   user 'postgres'
@@ -71,7 +69,8 @@ end
 
 # Make sure pookio can read the file at $SSH_AUTH_SOCK
 # so it can `git clone` etc.:
-group "deploy" do
+group "append_to_deploy" do
+  group_name "deploy"
   action :modify
   members ['pookio']
   append true
@@ -106,6 +105,7 @@ git "#{node['pookio']['root']}/pb_chrome" do
   ssh_wrapper node['ssh_agent_forwarding']['ssh_wrapper']
   action :sync
   user 'pookio'
+  group 'deploy'
   provider Chef::Provider::PookioGit
   notifies :restart, "service[chrome]"
 end
@@ -143,6 +143,7 @@ git "#{node['pookio']['root']}/pb_templates" do
   ssh_wrapper node['ssh_agent_forwarding']['ssh_wrapper']
   action :sync
   user 'pookio'
+  group 'deploy'
   provider Chef::Provider::PookioGit
 end
 
@@ -205,11 +206,12 @@ deploy "#{node['pookio']['root']}/pb_server" do
   git_ssh_wrapper node['ssh_agent_forwarding']['ssh_wrapper']
   scm_provider Chef::Provider::PookioGit
   user 'pookio'
+  group 'deploy'
 
   before_symlink do
     directory "#{node['pookio']['root']}/pb_server/shared/log" do
       owner 'pookio'
-      group 'pookio'
+      group 'deploy'
       mode '0755'
     end
   end
@@ -224,7 +226,7 @@ deploy "#{node['pookio']['root']}/pb_server" do
     template 'secrets.sh' do
       path "#{node['pookio']['root']}/pb_server/shared/secrets.sh"
       owner 'pookio'
-      group 'pookio'
+      group 'deploy'
       mode '0600'
       variables secrets: secrets
     end
